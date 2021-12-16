@@ -23,15 +23,14 @@ function User() {
 	const params = useParams();
 
 	useEffect(() => {
-		dispatch({type: 'SET_LOADING'})
-
+		dispatch({ type: 'SET_LOADING' })
 		const getUserData = async () => {
 			const userData = await getUserAndRepos(params.login)
 			dispatch({type: 'GET_USER_AND_REPOS', payload: userData })
 
 		}
 		getUserData()
-	}, []);
+	}, [dispatch, params.login]);
 
 	const {
 		name,
