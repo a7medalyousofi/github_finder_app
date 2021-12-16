@@ -23,11 +23,6 @@ const githubReduer = (state, action) => {
 				...state,
 				users: [],
 			};
-		case "GET_USER_AND_REPOS":
-			return {
-				...state,
-			};
-
 		default:
 			return state;
 	}

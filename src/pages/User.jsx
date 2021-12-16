@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState } from "react";
+import { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import GitHubContext from "../context/github/GithubContext";
@@ -16,7 +16,6 @@ import {
 	FiColumns,
 	FiArchive,
 } from "react-icons/fi";
-// import { ToastContainer, toast } from "react-toastify";
 
 function User() {
 	const { user, loading, repos, dispatch, numberFormater } =
