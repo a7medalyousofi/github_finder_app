@@ -33,7 +33,7 @@ function UserSearch() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		if (text == "") {
+		if (text === "") {
 			toast.error("Please enter github user name!", {
 				position: "top-right",
 				autoClose: 5000,
