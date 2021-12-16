@@ -17,19 +17,6 @@ function UserSearch() {
 		setText(e.target.value);
 	};
 
-	const handleClear = () => {
-		dispatch({ type: "CLEAR_USERS" });
-
-		toast.success("Cleared successfully", {
-			position: "top-right",
-			autoClose: 3000,
-			hideProgressBar: false,
-			newestOnTop: false,
-			rtl: false,
-			theme: "colored",
-		});
-	};
-
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
@@ -88,7 +75,7 @@ function UserSearch() {
 				</form>
 				{users.length > 0 && (
 					<button
-						onClick={handleClear()}
+						onClick={() => dispatch({ type: "CLEAR_USERS" })}
 						className='md:w-24 py-2 px-4 bg-white text-gray-700 font-semibold sm:text-sm rounded-md transition duration-150 ease-in-out'>
 						Clear
 					</button>
