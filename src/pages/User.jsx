@@ -21,12 +21,17 @@ function User() {
 	const { user, loading, repos, dispatch, numberFormater } =
 		useContext(GitHubContext);
 	const params = useParams();
+	const [notFound, setNotFound] = useState(false);
 
 	useEffect(() => {
 		dispatch({ type: 'SET_LOADING' })
 		const getUserData = async () => {
-			const userData = await getUserAndRepos(params.login)
-			dispatch({type: 'GET_USER_AND_REPOS', payload: userData })
+			try {
+				const userData = await getUserAndRepos(params.login)
+				dispatch({type: 'GET_USER_AND_REPOS', payload: userData })
+			} catch (err) {
+				setNotFound(true)
+			}
 
 		}
 		getUserData()
@@ -48,6 +53,17 @@ function User() {
 		public_gists,
 		hireable,
 	} = user;
+
+	if (notFound) {
+		return toast.error("User not found!", {
+			position: "top-right",
+			autoClose: 3000,
+			hideProgressBar: false,
+			newestOnTop: false,
+			rtl: false,
+			theme: "colored",
+		});;
+	}
 
 	if (loading) {
 		return <Skelton />;
