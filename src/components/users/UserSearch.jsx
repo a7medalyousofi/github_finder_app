@@ -31,25 +31,18 @@ function UserSearch() {
 			});
 			// setAlert("plz enter github user name", "error");
 		} else {
-			toast.success("User has been found", {
-				position: "top-right",
-				autoClose: 3000,
-				hideProgressBar: false,
-				newestOnTop: false,
-				rtl: false,
-				theme: "colored",
-			});
 
 			dispatch({ type: "SET_LOADING" });
 			const users = await searchUsers(text);
 			dispatch({ type: "GET_USERS", payload: users });
+			
 			setText("");
 		}
 	};
 
 	return (
-		<div className='container mx-auto'>
-			<div className='grid grid-cols-1 md:grid-cols-2 my-8 gap-y-4 md:gap-x-6'>
+		<div className='container mx-auto p-4'>
+			<div className='grid grid-cols-1 md:grid-cols-2 gap-y-4 md:gap-x-6'>
 				<form onSubmit={handleSubmit}>
 					<div className='relative rounded-md shadow-sm'>
 						<div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>

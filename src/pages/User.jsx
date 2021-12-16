@@ -22,23 +22,6 @@ import {
 function User() {
 	const { user, loading, repos, dispatch, numberFormater } =
 		useContext(GitHubContext);
-	const params = useParams();
-	const [notFound, setNotFound] = useState(false);
-
-	useEffect(() => {
-		dispatch({ type: 'SET_LOADING' })
-		const getUserData = async () => {
-			try {
-				const userData = await getUserAndRepos(params.login)
-				dispatch({type: 'GET_USER_AND_REPOS', payload: userData })
-			} catch (err) {
-				setNotFound(true)
-			}
-
-		}
-		getUserData()
-	}, [dispatch, params.login]);
-
 	const {
 		name,
 		type,
@@ -55,18 +38,33 @@ function User() {
 		public_gists,
 		hireable,
 	} = user;
+	const params = useParams();
+	const [notFound, setNotFound] = useState(false);
+
+	useEffect(() => {
+		dispatch({ type: "SET_LOADING" });
+		const getUserData = async () => {
+			try {
+				const userData = await getUserAndRepos(params.login);
+				dispatch({ type: "GET_USER_AND_REPOS", payload: userData });
+			} catch (err) {
+				setNotFound(true);
+			}
+		};
+		getUserData();
+	}, [dispatch, params.login]);
 
 	if (notFound) {
-		return toast.error("User not found!", {
+		toast.error("User not found!", {
 			position: "top-right",
 			autoClose: 3000,
 			hideProgressBar: false,
 			newestOnTop: false,
 			rtl: false,
 			theme: "colored",
-		});;
+		});
 	}
-
+	
 	if (loading) {
 		return <Skelton />;
 	}
@@ -127,7 +125,9 @@ function User() {
 
 						<h2 className='text-primary_d_text mb-5'>@{login}</h2>
 
-						<p className='text-lg text-secondary_d_text'>{(bio) ? bio : 'Hi there, welcome to my profile.'}</p>
+						<p className='text-lg text-secondary_d_text'>
+							{bio ? bio : "Hi there, welcome to my profile."}
+						</p>
 
 						<button className='my-5'>
 							<a
@@ -140,7 +140,7 @@ function User() {
 							</a>
 						</button>
 
-						<div className='w-full grid grid-cols-1 md:grid-cols-3 gap-y-3 rounded-lg shadow-md text-primary_d_text bg-secondary_d_bg border border-primary_d_bg'>
+						<div className='w-full grid grid-cols-1 md:grid-cols-3 md:gap-y-3 rounded-lg shadow-md text-primary_d_text bg-secondary_d_bg border border-primary_d_bg'>
 							{location && (
 								<div className='py-2 px-4 flex items-center'>
 									<FiMapPin className='text-3xl mr-3' />
@@ -197,7 +197,7 @@ function User() {
 				</div>
 
 				{/* Status Info */}
-				<div className='w-full grid grid-cols-1 md:grid-cols-4 gap-y-3 rounded-lg shadow-md border border-primary_d_bg bg-secondary_d_bg text-secondary_d_text'>
+				<div className='w-full grid grid-cols-1 md:grid-cols-4 md:gap-y-3 rounded-lg shadow-md border border-primary_d_bg bg-secondary_d_bg text-secondary_d_text'>
 					{/* Followers */}
 					<div className='p-4 flex items-center justify-between'>
 						<div>

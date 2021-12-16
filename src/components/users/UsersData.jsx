@@ -8,7 +8,7 @@ function UsersData() {
 
     if(!loading) {
         return (
-            <div className='container mx-auto grid grid-cols-1 gap-6 xl:grid-cols-5 lg:grid-cols-3 md:grid-cols-2 text-gray-400'>
+            <div className='container mx-auto grid grid-cols-1 gap-4 xl:grid-cols-5 lg:grid-cols-3 md:grid-cols-2 text-gray-400 p-4'>
                 {users.map((user) => (
                     <UserItem user={user} key={ user.id }/>
                 ))}

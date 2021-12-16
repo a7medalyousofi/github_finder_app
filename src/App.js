@@ -16,7 +16,7 @@ function App() {
 				<Router>
 					<div className='h-full flex flex-col justify-between'>
 						<Navbar />
-						<main className='min-h-screen grid bg-main_d_bg p-4'>
+						<main className='min-h-screen grid bg-main_d_bg md:p-4'>
 							<Routes>
 								<Route path='/' element={<Home />}></Route>
 								<Route
