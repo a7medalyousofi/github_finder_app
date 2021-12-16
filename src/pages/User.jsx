@@ -1,10 +1,12 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import GitHubContext from "../context/github/GithubContext";
 import Skelton from "./../components/layouts/Skelton";
 import RepoList from "../components/repos/RepoList";
 import { getUserAndRepos } from "../context/github/GithubActions";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
 	FiArrowLeft,
 	FiExternalLink,
